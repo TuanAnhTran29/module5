@@ -1,0 +1,14 @@
+<p>CALCULATOR</p>
+<div>
+  <label>First Number</label>
+  <input type="number" placeholder="Enter the number" [(ngModel)]="firstNum">
+</div>
+<div>
+  <label>Second Number</label>
+  <input type="number" placeholder="Enter the number" [(ngModel)]="secondNum">
+</div>
+<button type="submit" (click)="add(firstNum,secondNum)">Add</button>
+<button type="submit" (click)="subtract(firstNum,secondNum)">Sub</button>
+<button type="submit" (click)="multiply(firstNum,secondNum)">Mul</button>
+<button type="submit" (click)="div(firstNum,secondNum)">Div</button>
+<h3>Result: {{result}}</h3>
