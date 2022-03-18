@@ -1,0 +1,48 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <input type="text" id="email" class="fadeIn second" name="email" placeholder="email" formControlName="email">
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="loginForm.get('email')?.errors?.['required']
+         && loginForm.controls['email']?.touched">
+        Email is required!
+      </div>
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="loginForm.get('email')?.errors?.['email']
+         && loginForm.controls['email']?.touched">
+        Email is must be right!
+      </div>
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" formControlName="password">
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="loginForm.get('password')?.errors?.['required']
+         && loginForm.controls['password']?.touched">
+        Password is required!
+      </div>
+      <div class="col alert alert-danger" role="alert"
+           *ngIf="loginForm.get('password')?.errors?.['minlength']
+         && loginForm.controls['password']?.touched">
+        Password must be longer than 6!
+      </div>
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+
+  </div>
+</div>
