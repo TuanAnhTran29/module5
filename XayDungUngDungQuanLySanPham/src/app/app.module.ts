@@ -1,30 +1,21 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import {ReactiveFormsModule} from "@angular/forms";
-import {FormsModule} from "@angular/forms";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { ProductListComponent } from './product/product-list/product-list.component';
-import { ProductCreateComponent } from './product/product-create/product-create.component';
-import { ProductEditComponent } from './product/product-edit/product-edit.component';
-import { ProductDeleteComponent } from './product-delete/product-delete.component';
+
+const routes: Routes = [
+  {
+    path: 'product',
+    loadChildren: () => import('./product/product.module').then(module => module.ProductModule)
+  },
+  {
+    path: 'category',
+    loadChildren: () => import('./category/category.module').then(module => module.CategoryModule)
+  }
+];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductListComponent,
-    ProductCreateComponent,
-    ProductEditComponent,
-    ProductDeleteComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppModule { }
+export class AppRoutingModule {
+}
