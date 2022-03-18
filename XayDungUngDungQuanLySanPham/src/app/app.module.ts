@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'category',
     loadChildren: () => import('./category/category.module').then(module => module.CategoryModule)
+  },
+  {
+    path: 'nav-bar',
+    loadChildren: () => import('./shared/shared.module').then(module => module.SharedModule)
   }
 ];
 
