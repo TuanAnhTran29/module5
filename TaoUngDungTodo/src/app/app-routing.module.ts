@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: "todo",
+    loadChildren: () => import('./todo/todo.module').then(module => module.TodoModule)
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

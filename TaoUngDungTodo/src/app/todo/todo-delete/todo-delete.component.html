@@ -1,0 +1,18 @@
+<h1>Xoá danh mục sản phẩm</h1>
+<form [formGroup]="todoForm" (ngSubmit)="deleteTodo(id)">
+  <table>
+    <tr>
+      <td>Tên danh mục:</td>
+      <td><input type="text" formControlName="content"></td>
+    </tr>
+    <tr>
+      <td>Hoàn thành:</td>
+      <td><input type="radio" formControlName="complete" value="false"><span>Chưa</span></td>
+      <td><input type="radio" formControlName="complete" value="true"><span>Rồi</span></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button>Xoá</button></td>
+    </tr>
+  </table>
+</form>

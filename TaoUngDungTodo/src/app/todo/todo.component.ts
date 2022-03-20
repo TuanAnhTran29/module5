@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Todo} from "../todo";
 import {FormControl} from "@angular/forms";
+import {TodoService} from "../todo.service";
 let _id= 1;
 
 @Component({
@@ -14,9 +15,10 @@ export class TodoComponent implements OnInit {
 
   content = new FormControl();
 
-  constructor() { }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit(): void {
+    this.getAll()
   }
 
   toggleTodo(i: number){
@@ -34,6 +36,12 @@ export class TodoComponent implements OnInit {
       this.todos.push(todo)
       this.content.reset()
     }
+  }
+
+  getAll() {
+    this.todoService.getAll().subscribe(todos => {
+      this.todos = todos;
+    });
   }
 
 }

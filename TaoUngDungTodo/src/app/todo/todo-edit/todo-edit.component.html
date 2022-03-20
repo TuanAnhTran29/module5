@@ -1,0 +1,20 @@
+<h1>Cập nhật thông tin danh mục</h1>
+<form [formGroup]="todoForm" (ngSubmit)="updateTodo(id)">
+  <table>
+    <tr>
+      <td>Tên danh mục:</td>
+      <td><input type="text" formControlName="name"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Hoàn thành:</td>
+      <td><input type="radio" formControlName="complete" id="no" value="false"><span>Chưa</span></td>
+      <td><input type="radio" formControlName="complete" id="yes" value="true"><span>Rồi</span></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button>Cập nhật</button></td>
+      <td></td>
+    </tr>
+  </table>
+</form>
