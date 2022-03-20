@@ -7,6 +7,9 @@ import { CategoryCreateComponent } from './category-create/category-create.compo
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { CategoryDeleteComponent } from './category-delete/category-delete.component';
 
+import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule} from "@angular/forms";
+
 
 @NgModule({
   declarations: [
@@ -17,7 +20,9 @@ import { CategoryDeleteComponent } from './category-delete/category-delete.compo
   ],
   imports: [
     CommonModule,
-    CategoryRoutingModule
+    CategoryRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CategoryModule { }

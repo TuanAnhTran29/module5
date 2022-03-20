@@ -15,25 +15,31 @@ export class CategoryEditComponent implements OnInit {
   constructor(private categoryService: CategoryService,
               private activatedRoute: ActivatedRoute) {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      this.id = paramMap.get('id');
-      const category = this.getCategory(this.id);
+      this.id = Number(paramMap.get('id')) ;
+      this.getCategory(this.id);
+    });
+  }
+
+  ngOnInit() {
+
+
+
+  }
+
+  getCategory(id: any) {
+    return this.categoryService.findById(id).subscribe(category => {
       this.categoryForm = new FormGroup({
-        id: new FormControl(category.id),
         name: new FormControl(category.name),
       });
     });
   }
 
-  ngOnInit() {
-  }
-
-  getCategory(id: any) {
-    return this.categoryService.findById(id);
-  }
-
-  updateCategory(id: number) {
+  updateCategory(id: any) {
     const category = this.categoryForm.value;
-    this.categoryService.updateCategory(id, category);
-    alert('Cập nhật thành công');
+    this.categoryService.updateCategory(id, category).subscribe(() => {
+      alert('Cập nhật thành công');
+    }, e => {
+      console.log(e);
+    });
   }
 }

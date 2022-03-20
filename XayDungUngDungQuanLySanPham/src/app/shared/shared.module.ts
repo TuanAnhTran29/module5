@@ -9,6 +9,9 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
   declarations: [
     NavBarComponent
   ],
+  exports: [
+    NavBarComponent
+  ],
   imports: [
     CommonModule,
     SharedRoutingModule

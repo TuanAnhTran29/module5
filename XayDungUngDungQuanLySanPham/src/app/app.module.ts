@@ -1,25 +1,24 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
-
-const routes: Routes = [
-  {
-    path: 'product',
-    loadChildren: () => import('./product/product.module').then(module => module.ProductModule)
-  },
-  {
-    path: 'category',
-    loadChildren: () => import('./category/category.module').then(module => module.CategoryModule)
-  },
-  {
-    path: 'nav-bar',
-    loadChildren: () => import('./shared/shared.module').then(module => module.SharedModule)
-  }
-];
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import {SharedModule} from "./shared/shared.module";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppRoutingModule {
+
+export class AppModule {
 }

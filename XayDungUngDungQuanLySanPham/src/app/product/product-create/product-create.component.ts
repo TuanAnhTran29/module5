@@ -10,7 +10,6 @@ import {ProductService} from "../../service/product.service";
 export class ProductCreateComponent implements OnInit {
 
   productForm: FormGroup = new FormGroup({
-    id: new FormControl(),
     name: new FormControl(),
     price: new FormControl(),
     description: new FormControl(),
@@ -23,8 +22,13 @@ export class ProductCreateComponent implements OnInit {
 
   submit(){
     const product = this.productForm.value;
-    this.productService.saveProduct(product);
-    this.productForm.reset();
+    this.productService.saveProduct(product).subscribe(() => {
+      this.productForm.reset();
+      alert("Tạo thành công")
+    }, error => {
+      console.log(error)
+    });
+
   }
 
 }

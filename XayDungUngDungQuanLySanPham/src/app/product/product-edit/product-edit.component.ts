@@ -20,28 +20,30 @@ export class ProductEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.activeRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      this.id = paramMap.get('id');
-      const product = this.productService.findById(this.id);
-
-      if (product === undefined) {
-        console.log("Can't find this product!!")
-      } else {
-
-        this.productForm = new FormGroup({
-          id: new FormControl(product.id),
-          name: new FormControl(product.name),
-          price: new FormControl(product.price),
-          description: new FormControl(product.description)
-        });
-      }
+      this.id = Number(paramMap.get('id'));
+      this.getCategory(this.id)
     })
 
   }
 
+  getCategory(id: any) {
+    return this.productService.findById(id).subscribe(product => {
+      this.productForm = new FormGroup({
+        name: new FormControl(product.name),
+        price: new FormControl(product.price),
+        description: new FormControl(product.description)
+      });
+    });
+  }
 
-  submitUpdate(){
+  submitUpdate(id: any){
     const product= this.productForm.value
-    this.productService.updateById(this.id,product)
-    this.productForm.reset()
+    this.productService.updateById(id,product).subscribe(() => {
+      this.productForm.reset()
+      alert("Cập nhật thành công")
+    }, error => {
+      console.log(error)
+    })
+
   }
 }

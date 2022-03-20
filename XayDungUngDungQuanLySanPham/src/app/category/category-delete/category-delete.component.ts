@@ -15,25 +15,30 @@ export class CategoryDeleteComponent implements OnInit {
   constructor(private categoryService: CategoryService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {
+
+  }
+
+  ngOnInit() {
     this.activatedRoute.paramMap.subscribe((paramMap: ParamMap) => {
-      this.id = paramMap.get('id');
-      const category = this.getCategory(this.id);
+      this.id =Number(paramMap.get('id')) ;
+      this.getCategory(this.id);
+
+    })
+  }
+
+  getCategory(id: number) {
+    return this.categoryService.findById(id).subscribe(category => {
       this.categoryForm = new FormGroup({
-        id: new FormControl(category.id),
         name: new FormControl(category.name),
       });
     });
   }
 
-  ngOnInit() {
-  }
-
-  getCategory(id: number) {
-    return this.categoryService.findById(id);
-  }
-
-  deleteCategory(id: number) {
-    this.categoryService.deleteCategory(id);
-    this.router.navigate(['/category/list']);
+  deleteCategory(id: any) {
+    this.categoryService.deleteCategory(id).subscribe(() => {
+      this.router.navigate(['/category/list']);
+    }, e => {
+      console.log(e);
+    });
   }
 }
