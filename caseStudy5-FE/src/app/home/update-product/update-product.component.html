@@ -1,0 +1,58 @@
+<div class="container" style="text-align: center">
+  <div class="row">
+    <div class="col-12" style="margin-top: 20px">
+      <mat-card style="margin: 50px 0">
+        <mat-card-title style="font-size: xxx-large">Update Product Form</mat-card-title><br>
+
+        <mat-error class="alert alert-primary">{{status}}</mat-error>
+
+        <form [formGroup]="formUpdate" (ngSubmit)="submitUpdate(id)" novalidate>
+          <mat-form-field appearance="standard">
+            <mat-label>Product name:</mat-label>
+            <input matInput placeholder="Product name" formControlName="name">
+            <mat-icon matSuffix>redeem</mat-icon>
+            <mat-error *ngIf="formUpdate.get('name')?.errors?.['required'] && formUpdate.get('name')?.touched">Product name is required!</mat-error>
+          </mat-form-field><br>
+
+          <mat-form-field appearance="standard">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Description" formControlName="description">
+            <mat-icon matSuffix>description</mat-icon>
+            <mat-error *ngIf="formUpdate.get('description')?.errors?.['required'] && formUpdate.get('description')?.touched">Product description is required!</mat-error>
+          </mat-form-field><br>
+
+          <mat-form-field appearance="standard">
+            <mat-label>Price</mat-label>
+            <input type="number" matInput placeholder="Price" formControlName="price">
+            <mat-icon matSuffix>money</mat-icon>
+            <mat-error *ngIf="formUpdate.get('price')?.errors?.['required'] && formUpdate.get('price')?.touched">Product price is required!</mat-error>
+          </mat-form-field><br>
+
+          <mat-form-field appearance="standard">
+            <mat-label>Inventory</mat-label>
+            <input type="number" matInput placeholder="Inventory" formControlName="inventory">
+            <mat-icon matSuffix>inventory</mat-icon>
+            <mat-error *ngIf="formUpdate.get('inventory')?.errors?.['required'] && formUpdate.get('inventory')?.touched">Product inventory is required!</mat-error>
+          </mat-form-field><br>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Product status</mat-label>
+            <input type="text" matInput placeholder="Status" formControlName="status">
+            <mat-error *ngIf="formUpdate.get('status')?.errors?.['required'] && formUpdate.get('status')?.touched">Product status is required!</mat-error>
+          </mat-form-field><br>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Category</mat-label>
+            <select (change)="checkBoxValue($event)" matNativeControl required  >
+<!--              <option [value]="null" disabled>Select product category</option>-->
+              <option *ngFor="let category of categories" formControlName="categories" [value]="category.id">{{category.name}}</option>
+            </select>
+          </mat-form-field><br>
+
+          <button mat-raised-button color="primary">Update product</button>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>
+

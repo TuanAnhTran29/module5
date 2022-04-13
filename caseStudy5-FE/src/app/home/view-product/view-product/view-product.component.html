@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12" style="margin-top: 20px">
+
+      <mat-card-title style="font-size: xx-large; color: blue">Product name: {{product.name}}</mat-card-title>
+
+      <mat-error>{{status}}</mat-error>
+
+      <mat-card>
+        <h3>Description: {{product.description}}</h3>
+
+        <h3>Inventory: {{product.inventory}}</h3>
+
+        <h3>Price: {{product.price}}</h3>
+
+        Picture: <img width="300px" height="300px" [src]="product.picture" alt="">
+
+        <h3>Status: {{product.status}}</h3>
+
+
+        <h3 >Category: <span *ngFor="let category of categories">{{category.name}}</span> </h3>
+
+        <button *ngIf="!isAdmin" type="button" (click)="minus()" mat-flat-button color="primary">-</button>
+        <input *ngIf="!isAdmin" type="text" style="width: 50px; text-align: center" [value]="quantity">
+        <button *ngIf="!isAdmin" type="button" (click)="plus(product.id)" mat-flat-button color="primary">+</button><br><br>
+
+
+        <button *ngIf="!isAdmin" (click)="addToCart(product.id,quantity,uid)" mat-raised-button color="warn">Add to cart  <mat-icon>add_shopping_cart</mat-icon> </button>
+
+
+      </mat-card>
+
+
+    </div>
+  </div>
+</div>

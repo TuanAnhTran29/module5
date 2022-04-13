@@ -1,0 +1,32 @@
+<div class="container" style="text-align: center">
+  <div class="row">
+    <div class="col-12" style="margin-top: 20px">
+      <mat-card style="margin: 50px 0">
+        <mat-card-title style="font-size: xxx-large">Sign In</mat-card-title><br><br><br>
+
+        <mat-error class="alert alert-primary">{{status}}</mat-error>
+
+        <form [formGroup]="formSignIn" (ngSubmit)="signIn()" novalidate>
+          <mat-form-field appearance="outline" style="width: 350px">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="" [(ngModel)]="formSignIn.username" formControlName="username">
+            <mat-icon matSuffix>account_circle</mat-icon>
+            <mat-error *ngIf="formSignIn.get('username')?.errors?.['required'] && formSignIn.get('username')?.touched">Username is required</mat-error>
+          </mat-form-field><br><br>
+
+          <mat-form-field appearance="fill" style="width: 350px">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" required minlength="6" maxlength="100"
+                   formControlName="password" [(ngModel)]="formSignIn.password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon><br>
+              <mat-error *ngIf="formSignIn.get('password')?.errors?.['required'] && formSignIn.get('password')?.touched">Password is required</mat-error>
+            </button>
+          </mat-form-field><br><br>
+
+          <button type="submit" mat-stroked-button color="accent" class="btn-block">Sign in</button>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>

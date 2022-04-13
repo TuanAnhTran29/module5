@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12" style="margin-top: 20px">
+
+      <a [routerLink]="['/my-profile',id]"><-Back to My-profile</a><br><br>
+
+      <mat-card-title style="font-size: xx-large; color: blue">Update your profile</mat-card-title><br>
+
+      <br><mat-error class="alert alert-primary">{{status}}</mat-error>
+
+      <form [formGroup]="userForm" (ngSubmit)="submitUpdate(id)" novalidate>
+
+        <mat-form-field appearance="legacy" style="width: 250px">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="name..." formControlName="name">
+          <mat-icon matSuffix>person_outline</mat-icon>
+          <mat-error *ngIf="userForm.get('name')?.errors?.['required'] && userForm.get('name')?.touched">Name is required</mat-error>
+          <mat-error *ngIf="userForm.get('name')?.errors?.['minlength'] && userForm.get('name')?.touched">Name must be longer than 3 characters</mat-error>
+        </mat-form-field><br>
+
+        <mat-form-field appearance="legacy" style="width: 250px">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="email..."  formControlName="email">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="userForm.get('email')?.errors?.['required'] && userForm.get('email')?.touched">Email is required</mat-error>
+          <mat-error *ngIf="userForm.get('email')?.errors?.['email'] && userForm.get('email')?.touched">Email is wrong</mat-error>
+        </mat-form-field><br>
+
+        <mat-form-field appearance="legacy" style="width: 250px">
+          <mat-label>Phone number</mat-label>
+          <input matInput placeholder="phone number..."  formControlName="phone">
+          <mat-icon matSuffix>phone</mat-icon>
+          <mat-error *ngIf="userForm.get('phone')?.errors?.['required'] && userForm.get('phone')?.touched">Phone is required</mat-error>
+          <mat-error *ngIf="userForm.get('phone')?.errors?.['pattern'] && userForm.get('phone')?.touched">Wrong phone format</mat-error>
+        </mat-form-field><br>
+
+        <mat-form-field appearance="legacy" style="width: 250px">
+          <mat-label>Address</mat-label>
+          <input matInput placeholder="address..."  formControlName="address">
+          <mat-icon matSuffix>home</mat-icon>
+          <mat-error *ngIf="userForm.get('address')?.errors?.['required'] && userForm.get('address')?.touched">Address is required</mat-error>
+          <mat-error *ngIf="userForm.get('address')?.errors?.['minlength'] && userForm.get('address')?.touched">Address must be longer than 5 characters</mat-error>
+        </mat-form-field><br>
+
+
+        <button type="submit" [disabled]="userForm.invalid" mat-flat-button color="primary">Update profile</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+

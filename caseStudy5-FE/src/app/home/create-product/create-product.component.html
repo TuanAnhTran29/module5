@@ -1,0 +1,57 @@
+<div class="container" style="text-align: center">
+  <div class="row">
+    <div class="col-12" style="margin-top: 20px">
+      <mat-card style="margin: 50px 0">
+        <mat-card-title style="font-size: xxx-large">Create New Product</mat-card-title><br>
+
+        <mat-error class="alert alert-primary">{{status}}</mat-error>
+
+          <form [formGroup]="formCreate" (ngSubmit)="createProduct()" novalidate>
+            <mat-form-field appearance="standard">
+              <mat-label>Product name:</mat-label>
+              <input matInput placeholder="Product name" [(ngModel)]="formCreate.name" formControlName="name">
+              <mat-icon matSuffix>redeem</mat-icon>
+              <mat-error *ngIf="formCreate.get('name')?.errors?.['required'] && formCreate.get('name')?.touched">Product name is required!</mat-error>
+            </mat-form-field><br>
+
+            <mat-form-field appearance="standard">
+              <mat-label>Description</mat-label>
+              <input matInput placeholder="Description" [(ngModel)]="formCreate.description" formControlName="description">
+              <mat-icon matSuffix>description</mat-icon>
+              <mat-error *ngIf="formCreate.get('description')?.errors?.['required'] && formCreate.get('description')?.touched">Product description is required!</mat-error>
+            </mat-form-field><br>
+
+            <mat-form-field appearance="standard">
+              <mat-label>Price</mat-label>
+              <input type="number" matInput placeholder="Price" [(ngModel)]="formCreate.price" formControlName="price">
+              <mat-icon matSuffix>money</mat-icon>
+              <mat-error *ngIf="formCreate.get('price')?.errors?.['required'] && formCreate.get('price')?.touched">Product price is required!</mat-error>
+            </mat-form-field><br>
+
+            <mat-form-field appearance="standard">
+              <mat-label>Inventory</mat-label>
+              <input type="number" matInput placeholder="Inventory" [(ngModel)]="formCreate.inventory" formControlName="inventory">
+              <mat-icon matSuffix>inventory</mat-icon>
+              <mat-error *ngIf="formCreate.get('inventory')?.errors?.['required'] && formCreate.get('inventory')?.touched">Product inventory is required!</mat-error>
+            </mat-form-field><br>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Category</mat-label>
+              <select (change)="checkBoxValue($event)" matNativeControl  formControlName="categories" required>
+                <option [ngValue]="null" disabled>Chọn danh mục sản phẩm</option>
+                <option *ngFor="let category of categories" [(ngModel)]="formCreate.categories" [value]="category.id">{{category.name}}</option>
+              </select>
+            </mat-form-field>
+
+            <div>
+              <mat-label>Upload product picture</mat-label>
+              <app-upload-picture (giveURLtoCreate)="getPicture($event)" formControlName="picture" [(ngModel)]="formCreate.picture"></app-upload-picture>
+              <mat-error *ngIf="formCreate.get('picture')?.errors?.['required'] && formCreate.get('picture')?.touched">Product picture is required!</mat-error>
+            </div><br>
+
+            <button mat-raised-button color="primary">Add new product</button>
+          </form>
+      </mat-card>
+    </div>
+  </div>
+</div>

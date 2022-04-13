@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12" style="margin-top: 20px">
+      <div class="mat-elevation-z8">
+        <mat-card-title>Are you sure?</mat-card-title><br><br>
+        <label class=”col”>
+          Product name:
+          <span style="font-size: x-large">{{currentProduct.name}}</span>
+        </label><br>
+        <label class=”col”>
+          Product description:
+          <span style="font-size: x-large">{{currentProduct.description}}</span>
+        </label><br>
+        <label class=”col”>
+          Product price:
+          <span style="font-size: x-large">{{currentProduct.price}}</span>
+        </label><br>
+        <label class=”col”>
+          Product inventory:
+          <span style="font-size: x-large">{{currentProduct.inventory}}</span>
+        </label><br><br>
+        <div class=”col”>
+          <button type="submit" mat-stroked-button (click)="deleteProduct()">Yes</button>
+          <button type="submit" mat-stroked-button (click)="backToList()">No</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+

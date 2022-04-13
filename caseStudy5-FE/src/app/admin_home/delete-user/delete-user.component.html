@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12" style="margin-top: 20px">
+      <div class="mat-elevation-z8">
+        <mat-card-title>Are you sure?</mat-card-title><br><br>
+        <label class=”col”>
+          Customer name:
+          <span style="font-size: x-large">{{currentUser.name}}</span>
+        </label><br>
+        <label class=”col”>
+          Customer email:
+          <span style="font-size: x-large">{{currentUser.email}}</span>
+        </label><br>
+        <label class=”col”>
+          Customer phone:
+          <span style="font-size: x-large">{{currentUser.phone}}</span>
+        </label><br><br>
+
+        <div class=”col”>
+          <button type="submit" mat-stroked-button (click)="deleteUser()">Yes</button>
+          <button type="submit" mat-stroked-button (click)="backToUserList()">No</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

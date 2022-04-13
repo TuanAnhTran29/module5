@@ -1,0 +1,85 @@
+<nav class="docs-navbar-header" aria-label="Top Toolbar" style="background-color: beige">
+  <a mat-button class="docs-button" routerLink="" aria-label="Angular Material">
+    <img class="docs-angular-logo" width="150px" src="https://s.tmimgcdn.com/scr/800x500/183700/modern-shopping-business-logo-template_183766-original.jpg"
+         alt="">
+  </a>
+  <a routerLink="" mat-button class="docs-button" aria-label="Angular Material">
+    <mat-icon>home</mat-icon>
+    <span>Home</span>
+
+  </a>
+
+  <button *ngIf="!isLoggedIn" mat-stroked-button class="auth1" style="background-color: gray; color: white" routerLink="/register" aria-label="Angular Material">
+    Sign Up
+  </button>
+  <button *ngIf="!isLoggedIn" mat-stroked-button class="auth2" style="background-color: darkseagreen" routerLink="/login" aria-label="Angular Material">
+    Sign In<mat-icon>login</mat-icon>
+  </button>
+
+
+
+
+
+
+  <a *ngIf="isLoggedIn && isAdmin" routerLink="/create-product" mat-button class="docs-button" aria-label="Angular Material">
+    <span>Create new product</span>
+    <mat-icon>add_circle_outline</mat-icon>
+  </a>
+
+
+
+
+  <a *ngIf="isLoggedIn && isAdmin" [routerLink]="['/allUser']" mat-button class="docs-button" aria-label="Angular Material">
+    <span>All customer</span>
+    <mat-icon color="primary">person</mat-icon>
+  </a>
+
+  <a *ngIf="isLoggedIn" routerLink="/allBill" mat-button class="docs-button" aria-label="Angular Material">
+    <span>Bill list</span>
+    <mat-icon>receipt_long</mat-icon>
+  </a>
+
+  <a *ngIf="isLoggedIn" routerLink="/my-profile/{{idCurrentUser}}" mat-button class="docs-button" aria-label="Angular Material">
+    <mat-icon>manage_accounts</mat-icon>
+    <span>My profile</span>
+  </a>
+
+  <a *ngIf="isLoggedIn && isAdmin" routerLink="/allRevenue" mat-button class="docs-button" aria-label="Angular Material">
+    <span>All revenue</span>
+    <mat-icon>point_of_sale</mat-icon>
+  </a>
+
+  <a *ngIf="isLoggedIn && !isAdmin"  style="left: 815px" [routerLink]="['/cart/', idCurrentUser]" mat-button class="docs-button" aria-label="Angular Material">
+    <mat-icon>shopping_cart</mat-icon>
+    <span class='badge badge-warning' id='lblCartCount'> {{quantityProduct}} </span>
+  </a>
+
+
+
+
+
+  <button *ngIf="isLoggedIn && isAdmin" (click)="signOut()" class="auth" mat-stroked-button>
+    Logout
+    <mat-icon>logout</mat-icon>
+  </button>
+
+  <button *ngIf="isLoggedIn && !isAdmin" (click)="signOut()" class="logout" mat-stroked-button>
+    Logout
+    <mat-icon>logout</mat-icon>
+  </button>
+
+
+  <div *ngIf="isLoggedIn" style="margin-left: 1250px">
+    <mat-form-field appearance="outline">
+      <mat-label>Search product</mat-label>
+      <input matInput placeholder="Enter product name..." [(ngModel)]="keyword">
+    </mat-form-field>
+    <button style="background-color: gray" (click)="search(keyword)"><mat-icon>search</mat-icon></button>
+  </div>
+
+
+
+
+
+
+</nav>

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12" style="margin-top: 20px">
+
+      <mat-card-title style="font-size: xx-large; color: blue">User: {{user.name}}</mat-card-title>
+
+      <mat-card>
+        <h3>Username: {{user.username}}</h3>
+
+        <h3>Email: {{user.email}}</h3>
+
+        <h3>Address: {{user.address}}</h3>
+
+        <h3>Phone: {{user.phone}}</h3>
+
+        <h3 >Role: <span>{{roles}}</span> </h3>
+
+      </mat-card>
+
+      <button [routerLink]="['/update-profile',user.id]" mat-flat-button color="primary">Update profile</button>
+
+
+    </div>
+  </div>
+</div>
+
